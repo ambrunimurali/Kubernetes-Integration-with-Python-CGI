@@ -1,0 +1,33 @@
+import cgi
+import subprocess
+print(“content-type: text/html”)
+print()
+f = cgi.FieldStorage()
+t = f.getvalue(“x”)
+valuee = t.split()
+if valuee[0]== “launch”:
+cmd=”kubectl create deployement “+valuee[1]+ “ — image=”+valuee[3]
+if valuee[0]== “run”:
+cmd=”kubectl run “+valuee[1]+ “ — image=”+valuee[3]
+elif valuee[0]== “expose”:
+cmd=”kubectl expose deployment “+valuee[1]+ “ — port=”+valuee[3]+” — type”+valuee[3]
+elif valuee[0]== “scale”:
+cmd=”kubectl scale deployment “+valuee[1]+ “ — replicas=”+valuee[3]
+elif valuee[0]== “delete”:
+if valuee[1]==”everything”:
+cmd=”kubectl delete all — all”
+elif valuee[1]==”pod”:
+cmd=”kubectl delete pod “+valuee[2]
+elif valuee[1]==”deployment”:
+cmd=”kubectl delete deployment “+valuee[2]
+elif valuee[0]== “tell”:
+if valuee[4]==”pods” or valuee[4]==”pod” :
+cmd=”kubectl get pods”
+elif valuee[4]==”deployments” or words[4]==”deployment”:
+cmd=”kubectl get deployments”
+elif valuee[4]==”services” or valuee[4]==”service”:
+cmd=”kubectl get svc “ 
+else:
+cmd=”echo ENTER AGAIN”
+o=subprocess.getoutput(“sudo “+cmd+” — kubeconfig /root/k8s/admin.conf”)
+print(o)
