@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset=”utf-8">
+<meta name=”viewport” content=”width=device-width, initial-scale=1">
+<link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"><html>
+<head>
+<title>kubernetes</title>
+<style>
+body {
+background-color: #8ebf42;
+}
+form {
+width: 400px;
+margin: auto;
+margin-top: 250px;
+}
+input {
+padding: 4px 10px;
+border: 0;
+font-size: 16px;
+}
+.search {
+width: 75%;
+}
+.submit {
+width: 70px;
+background-color: #1c87c9;
+color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+<form action=”/form/submit” method=”GET”>
+<input type=”text” name=”text” class=”search” placeholder=”Search here!”>
+<input type=”submit” name=”submit” class=”submit” value=”Search”>
+</form>
+<h5>deployment . apps/test scaled</h5>
+<div> <h4>To launch deployment-> launch (name) with (image)<br>
+Creating a pod->run(name) with (image)<br>
+Expose a deployment-> expose(name)with(port number)and(hype)<br>
+Delete everything-> “delete everything”<br>
+Delete a pod-> delete pod(name)<br>
+Delete deployment->delete deployment(name)<br>
+</h4>
+</div>
+<div> <h4>ENTER YOUR COMMAND</h4>
+</div>
+<script>
+
+function client() {
+var i=document.getElementById(“in1”).value
+var xhr=new XMLHttpRequest();
+xhr.open(“GET”,”http://192.168.100.0/cgi-bin/python2.py?x="+i,true)
+xhr.send()
+xhr.onload=function()
+{
+var output=xhr.responseText;
+document.getElementById(“d1”).innerHTML=output;
+}
+}
+</script>
+</body>
+</html>
